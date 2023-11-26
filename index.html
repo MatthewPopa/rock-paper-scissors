@@ -3,18 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Rock Paper Scissors</title>
+<link rel="stylesheet" href="style.css"/>
 <script src="app.js" defer></script>
 </head>
 <body>
-<h1>Rock Paper Scissors</h1>
-<h3 id="round">Round: 0</h2>
-<p id="playerScore">Player score: 0</p>
-<p id="computerScore">Computer score: 0</p>
-<div class="selection">
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
+<div class="container">
+    <div class="title">
+        <h1>Rock Paper Scissors</h1>
+    </div>
+<!--   <div class="opponent-selector">
+        <div class="active opponent" id="computer"><img class="icon" src="assets/computer.svg"><span>VS Computer</span></div>
+        <div class="opponent" id="player"><img class="icon" src="assets/player.svg"><span>VS Player</span></div>
+    </div>-->
+    <div class="opponent-selector">
+        <div id="round">R0</div>
+        <div class="opponent" id="computer"><img class="icon" src="assets/computer.svg"><span id="computerScore">VS Computer</span></div>
+        <div class="opponent" id="player"><img class="icon" src="assets/player.svg"><span id="playerScore">VS Player</span></div>
+    </div>
+    <div class="shape-selector">
+        <div id="rock"><img src="assets/rock.svg"></div>
+        <div id="paper"><img src="assets/paper.svg"></div>
+        <div id="scissors"><img src="assets/scissors.svg"></div>
+    </div>
+    <p id="roundMessage">Select a shape to start.</p>
 </div>
-<p id="roundMessage"></p>
 </body>
 </html>

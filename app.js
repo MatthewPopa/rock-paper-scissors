@@ -9,13 +9,17 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+let startGame = () => {
+    
+}
+
 let endGame = () => {
     if(playerScore > computerScore) return roundMessage.textContent = "You won the game!";
     return roundMessage.textContent = "You lost the game.";
 };
 
 let playerChoice = '';
-let selection = document.querySelector('.selection');
+let selection = document.querySelector('.shape-selector');
 selection.addEventListener('click', (e) => {
     let target = e.target;
 
@@ -30,7 +34,8 @@ selection.addEventListener('click', (e) => {
             playerChoice = 'scissors';
             break;
     }
-    if(playerScore < 3 && computerScore < 3) playRound();
+    //if(playerScore == 0 && computerScore == 0) startGame();
+    if(playerScore < 5 && computerScore < 5) playRound();
 });
 
 let roundDisplay = document.querySelector('#round');
@@ -82,9 +87,9 @@ function playRound(player, computer) {
             roundMessage.textContent = "You tie! You both picked scissors.";
         }
     }
-    roundDisplay.textContent = "Round: " + currentRound;
-    playerDisplay.textContent = "Player score: " + playerScore;
-    computerDisplay.textContent = "Computer score: " + computerScore;
-    if(playerScore == 3 || computerScore == 3) endGame();
+    roundDisplay.textContent = "R" + currentRound;
+    playerDisplay.textContent = playerScore;
+    computerDisplay.textContent = computerScore;
+    if(playerScore == 5 || computerScore == 5) endGame();
     return;
 }

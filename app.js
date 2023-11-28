@@ -10,8 +10,12 @@ function getRandomInt(max) {
 }
 
 let startGame = () => {
-    
-}
+    roundDisplay.classList.add("grow");
+    computerDisplay.classList.add("fade");
+    playerDisplay.classList.add("fade");
+    //make text fade before implementing score display
+    //change computer/player divs to score display
+};
 
 let endGame = () => {
     if(playerScore > computerScore) return roundMessage.textContent = "You won the game!";
@@ -34,7 +38,7 @@ selection.addEventListener('click', (e) => {
             playerChoice = 'scissors';
             break;
     }
-    //if(playerScore == 0 && computerScore == 0) startGame();
+    if(currentRound == 0) startGame();
     if(playerScore < 5 && computerScore < 5) playRound();
 });
 
@@ -42,6 +46,29 @@ let roundDisplay = document.querySelector('#round');
 let roundMessage = document.querySelector('#roundMessage');
 let playerDisplay = document.querySelector('#playerScore');
 let computerDisplay = document.querySelector('#computerScore');
+
+let scoreDisplay = document.createElement('div');
+scoreDisplay.classList.add('score-display');
+let scoreTick = document.createElement('div');
+scoreTick.classList.add('tick');
+
+let numberOfRounds = 5;
+
+let createRoundArray = () => {
+    let newArray = [];
+    for(i = 1; i <= numberOfRounds; i++) {
+        newArray.push(i);
+    }
+    return newArray;
+}
+
+let createScoreDisplay = () => {
+    createRoundArray().forEach((element) => {
+        scoreTick.classList.add(element);
+        scoreDisplay.append(scoreTick.cloneNode(true));
+        scoreTick.classList.remove(element);
+    });
+}
 
 let playerScore = 0;
 let computerScore = 0;
@@ -87,9 +114,33 @@ function playRound(player, computer) {
             roundMessage.textContent = "You tie! You both picked scissors.";
         }
     }
-    roundDisplay.textContent = "R" + currentRound;
-    playerDisplay.textContent = playerScore;
-    computerDisplay.textContent = computerScore;
+    if(currentRound == 1){
+        setTimeout(() => {
+            roundDisplay.textContent = "R" + currentRound;
+        }, 300);
+        playerDisplay.textContent = '';
+        computerDisplay.textContent = '';
+        createScoreDisplay();
+        playerDisplay.append(scoreDisplay);
+        computerDisplay.append(scoreDisplay.cloneNode(true));
+    } else {
+        roundDisplay.textContent = "R" + currentRound;
+    };
+    let computerTicks = Array.from(document.querySelectorAll("#computerScore .score-display > .tick"));
+    computerTicks.forEach((tick) => {
+        if(tick.classList.contains(`${computerScore}`)){
+            tick.classList.add('point');
+        }
+    });
+    let playerTicks = Array.from(document.querySelectorAll("#playerScore .score-display > .tick"));
+    playerTicks.forEach((tick) => {
+        if(tick.classList.contains(`${playerScore}`)){
+            tick.classList.add('point');
+        }
+    });
+    // if(document.querySelector("#computerScore .score-display > .tick").classList.contains(`${computerScore}`)){
+    //     document.querySelector("#computerScore .score-display > .tick").classList.add("point");
+    // };
     if(playerScore == 5 || computerScore == 5) endGame();
     return;
 }

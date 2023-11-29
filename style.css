@@ -150,7 +150,7 @@ body {
 @keyframes p1Win {
     from { transform: translate(0rem, 0) rotate(0deg); }
     15%  { transform: translate(-.5rem, .5rem) rotate(-5deg); }
-    45%  { transform: translate(8rem, -8rem) rotate(15deg) scale(110%); }
+    45%  { transform: translate(8rem, -8rem) rotate(15deg) scale(120%); }
     70%  { transform: translate(14rem, 0) rotate(25deg); }
     to   { transform: translate(0rem, 0) rotate(0deg); }
 }
@@ -164,7 +164,7 @@ body {
 @keyframes p2Win {
     from { transform: translate(0rem, 0) rotate(0deg); }
     15%  { transform: translate(.5rem, .5rem) rotate(5deg); }
-    45%  { transform: translate(-8rem, -8rem) rotate(-15deg) scale(110%); }
+    45%  { transform: translate(-8rem, -8rem) rotate(-15deg) scale(120%); }
     70%  { transform: translate(-14rem, 0) rotate(-25deg); }
     to   { transform: translate(0rem, 0) rotate(0deg); }
 }

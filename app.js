@@ -1,14 +1,25 @@
-//let roundDisplay = document.querySelector('#round');
+//Create 2 separate score displays, then add to each class
+
 let roundMessage = document.querySelector('#roundMessage');
 let playerDisplay = document.querySelector('#playerScore');
 let computerDisplay = document.querySelector('#computerScore');
+
+let roundSlider = document.querySelector('#roundSlider');
+let roundNumber = document.querySelector('#roundNumber');
+let roundDisplay = document.querySelector('#roundDisplay');
+
+let numberOfRounds = 5;
+
+roundSlider.oninput = () => {
+    roundNumber.textContent = roundSlider.value;
+    numberOfRounds = roundSlider.value;
+}
 
 let scoreDisplay = document.createElement('div');
 scoreDisplay.classList.add('score-display');
 let scoreTick = document.createElement('div');
 scoreTick.classList.add('tick');
 
-let numberOfRounds = 5;
 
 let player1Shape = document.createElement('div');
 let player2Shape = document.createElement('div');
@@ -42,14 +53,16 @@ let createScoreDisplay = () => {
 let startGame = () => {
     createScoreDisplay();
     document.querySelector(".active").classList.remove("active");
+    document.querySelector(".selectable").classList.remove("selectable");
     playerDisplay.textContent = '';
     computerDisplay.textContent = '';
+    roundDisplay.textContent = 'Round: ';
     playerDisplay.append(scoreDisplay);
     computerDisplay.append(scoreDisplay.cloneNode(true));
-    //roundDisplay.textContent = "R" + currentRound;
+    roundNumber.textContent = currentRound;
     setTimeout(() => {
         document.querySelector(".opponent-selector").classList.add("grow");
-    }, 400);
+    }, 250);
 };
 
 let endGame = () => {
@@ -136,7 +149,7 @@ function playRound(player, computer) {
             }
         });
     };
-    //roundDisplay.textContent = "R" + currentRound;
+    roundNumber.textContent = currentRound;
     addScore();
     if(playerScore == numberOfRounds || computerScore == numberOfRounds) endGame();
     return;

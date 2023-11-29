@@ -11,8 +11,11 @@
     <div class="title">
         <h1>Rock Paper Scissors</h1>
     </div>
-    <div class="round" id="roundMessage">Select a shape to start.</div>
-    <div class="opponent-selector">
+    <div class="round-header">
+        <div id="round"><span id="roundDisplay">Rounds: </span><span id="roundNumber">5</span></div>
+        <div id="roundMessage"><input type="range" min="1" max="9" value="5" class="slider" id="roundSlider"></div>
+    </div>
+    <div class="opponent-selector selectable">
         <div class="active opponent" id="computer">
             <div class="scoreboard">
                 <img class="icon" src="assets/computer.svg">

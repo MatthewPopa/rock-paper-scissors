@@ -11,21 +11,34 @@
     <div class="title">
         <h1>Rock Paper Scissors</h1>
     </div>
-<!--   <div class="opponent-selector">
-        <div class="active opponent" id="computer"><img class="icon" src="assets/computer.svg"><span>VS Computer</span></div>
-        <div class="opponent" id="player"><img class="icon" src="assets/player.svg"><span>VS Player</span></div>
-    </div>-->
+    <div class="round" id="roundMessage">Select a shape to start.</div>
     <div class="opponent-selector">
-        <div class="round" id="round"></div>
-        <div class="opponent" id="computer"><img class="icon" src="assets/computer.svg"><div id="computerScore">VS Computer</div></div>
-        <div class="opponent" id="player"><img class="icon" src="assets/player.svg"><div id="playerScore">VS Player</div></div>
+        <div class="active opponent" id="computer">
+            <div class="scoreboard">
+                <img class="icon" src="assets/computer.svg">
+                <div class="scoreboard" id="computerScore">VS Computer</div>
+            </div>
+            <hr>
+            <div class="player-shape">
+                <div id="question"><img src="assets/question.svg"></div>
+            </div>
+        </div>
+        <div class="opponent" id="player">
+            <div class="scoreboard">
+                <img class="icon" src="assets/player.svg">
+                <div class="scoreboard" id="playerScore">VS Player</div>
+            </div>
+            <hr>
+            <div class="player-shape">
+                <div id="question"><img src="assets/question.svg"></div>
+            </div>
+        </div>
     </div>
     <div class="shape-selector">
         <div id="rock"><img src="assets/rock.svg"></div>
         <div id="paper"><img src="assets/paper.svg"></div>
         <div id="scissors"><img src="assets/scissors.svg"></div>
     </div>
-    <p id="roundMessage">Select a shape to start.</p>
 </div>
 </body>
 </html>

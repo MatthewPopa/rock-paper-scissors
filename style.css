@@ -21,7 +21,8 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 h1 {
-    font-size: 3.75rem;
+    font-size: 3.75em;
+    text-align: center;
 }
 
 body {
@@ -46,7 +47,7 @@ body {
 }
 
 .opponent-selector {
-    font-size: 1.5rem;
+    font-size: 1.5em;
     display: flex;
     flex-flow: row;
     gap: var(--unit);
@@ -60,7 +61,7 @@ body {
 }
 
 .opponent {
-    flex: 1 1 0px;
+    flex: 1 1 0;
     border: .25rem solid var(--white);
     border-radius: .5rem;
     display: flex;
@@ -85,7 +86,7 @@ body {
 }
 
 .round-header {
-    font-size: 1.5rem;
+    font-size: 1.5em;
     display: flex;
     width: 100%;
     gap: calc(var(--unit) * .5);
@@ -102,10 +103,11 @@ body {
     min-width: 10.25rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 #roundMessage {
-    flex: 1 1 0px;
+    flex: 1 1 0;
     border: .125rem solid var(--tertiary);
     display: flex;
     align-items: center;
@@ -120,15 +122,16 @@ body {
 }
 
 .player-shape {
-    margin: 1.25rem;
+    padding: 1.25rem;
+    width: 75%;
 }
 
 .player-shape img {
-    height: 13.75rem;
+    width: 100%;
 }
 
 .icon {
-    height: 2.5rem;
+    height: 1.6em;
     filter: invert(100%) sepia(75%) saturate(111%) hue-rotate(221deg) brightness(116%) contrast(95%);
 }
 
@@ -145,10 +148,10 @@ hr {
 }
 
 .shape-selector div {
-    flex: 1 1 0px;
+    flex: 1 1 0;
     height: auto;
     aspect-ratio: 1 / 1;
-    border: .125rem solid var(--white);
+    border: .25rem solid var(--white);
     border-radius: .5rem;
     display: flex;
     flex-direction: column;
@@ -166,6 +169,7 @@ hr {
 
 .shape-selector div img {
     height: 8rem;
+    height: 61.8%;
     z-index: -1;
 }
 
@@ -173,11 +177,20 @@ hr {
     display: flex;
     height: 3rem;
     gap: .25rem;
+    align-items: center;
+}
+
+.score {
+    display: flex;
+    align-items: center;
+    height: 5.5rem;
 }
 
 .tick {
+    flex: 1 1 0;
     height: 100%;
     width: 1rem;
+    max-width: 1rem;
     border-radius: .25rem;
     background-color: var(--secondary);
     transition: .5s;
@@ -217,4 +230,26 @@ hr {
     border-radius: 50%;
     background: var(--blue);
     cursor: pointer;
+}
+
+@media (width < 600px)  {
+    body {
+        font-size: 12px;
+    }
+    .round-header {
+        order: 1;
+    }
+    .opponent-selector {
+        height: 4.5rem;
+    }
+    .scoreboard {
+        height: 4rem;
+    }
+    .score {
+        height: 4rem;
+    }
+    .tick {
+        height: 80%;
+        width: .75rem
+    }
 }

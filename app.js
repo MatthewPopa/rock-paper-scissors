@@ -65,7 +65,7 @@ let startGame = () => {
     computerDisplay.append(scoreDisplay.cloneNode(true));
     roundNumber.textContent = currentRound;
     setTimeout(() => {
-        document.querySelector(".opponent-selector").classList.add("grow");
+        document.querySelector(".opponent-selector").setAttribute('style', 'height:' + document.querySelector(".opponent").scrollHeight + 'px');
     }, 250);
 };
 

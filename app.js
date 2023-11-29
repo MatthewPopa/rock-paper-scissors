@@ -32,6 +32,15 @@ function updateShape(playerShape, choice) {
     }, 300);
 }
 
+function winAnim(playerShape) {
+    setTimeout(() => {
+        playerShape.classList.add('win');
+    }, 500);
+    setTimeout(() => {
+        playerShape.classList.remove('win');
+    }, 2000);
+}
+
 function getComputerChoice() {
     let number = getRandomInt(3);
     let choice = (number == 2) ? "rock" : (number == 1) ? "paper" : "scissors";
@@ -71,6 +80,11 @@ let startGame = () => {
     setTimeout(() => {
         document.querySelector(".opponent-selector").setAttribute('style', 'height:' + document.querySelector(".opponent").scrollHeight + 'px');
     }, 250);
+    setTimeout(() => {
+        document.querySelectorAll(".opponent").forEach(item => {
+            item.style.setProperty('overflow', 'unset');
+        });
+    }, 500);
 };
 
 let endGame = () => {
@@ -113,15 +127,18 @@ function playRound(player, computer) {
         if(computer == "paper"){
             roundMessage.textContent = "You lose! Paper beats rock.";
             computerScore++;
+            winAnim(player1Shape);
         }
         if(computer == "scissors"){
             roundMessage.textContent = "You win! Rock beats scissors.";
             playerScore++;
+            winAnim(player2Shape);
         }
     } else if(player == "paper"){
         if(computer == "rock"){
             roundMessage.textContent = "You win! Paper beats rock.";
             playerScore++;
+            winAnim(player2Shape);
         }
         if(computer == "paper"){
             roundMessage.textContent = "You tie! You both picked paper.";
@@ -129,15 +146,18 @@ function playRound(player, computer) {
         if(computer == "scissors"){
             roundMessage.textContent = "You lose! Scissors beats paper.";
             computerScore++;
+            winAnim(player1Shape);
         }
     } else if(player == "scissors"){
         if(computer == "rock"){
             roundMessage.textContent = "You lose! Rock beats scissors.";
             computerScore++;
+            winAnim(player1Shape);
         }
         if(computer == "paper"){
             roundMessage.textContent = "You win! Scissors beats paper.";
             playerScore++;
+            winAnim(player2Shape);
         }
         if(computer == "scissors"){
             roundMessage.textContent = "You tie! You both picked scissors.";
@@ -161,8 +181,6 @@ function playRound(player, computer) {
     addScore();
     updateShape(player2Shape, player);
     updateShape(player1Shape, computer);
-    setTimeout(() => {
-    }, 500);
     if(playerScore == numberOfRounds || computerScore == numberOfRounds) endGame();
     return;
 }

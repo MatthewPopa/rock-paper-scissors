@@ -130,12 +130,43 @@ body {
     width: 100%;
     opacity: 1;
     transition: .25s;
+    position: relative;
     transform: translateY(0rem);
+    filter: drop-shadow(0px 3px 5px #161616);
 }
 
 .player-shape img.fade {
     opacity: 0;
     transform: translateY(1rem);
+}
+
+#player1Selection.win {
+    animation-name: p1Win;
+    animation-duration: 1.5s;
+    z-index: 2;
+    transition: unset;
+}
+
+@keyframes p1Win {
+    from { transform: translate(0rem, 0) rotate(0deg); }
+    15%  { transform: translate(-.5rem, .5rem) rotate(-5deg); }
+    45%  { transform: translate(8rem, -8rem) rotate(15deg) scale(110%); }
+    70%  { transform: translate(14rem, 0) rotate(25deg); }
+    to   { transform: translate(0rem, 0) rotate(0deg); }
+}
+
+#player2Selection.win {
+    animation-name: p2Win;
+    animation-duration: 1.5s;
+    transition: unset;
+}
+
+@keyframes p2Win {
+    from { transform: translate(0rem, 0) rotate(0deg); }
+    15%  { transform: translate(.5rem, .5rem) rotate(5deg); }
+    45%  { transform: translate(-8rem, -8rem) rotate(-15deg) scale(110%); }
+    70%  { transform: translate(-14rem, 0) rotate(-25deg); }
+    to   { transform: translate(0rem, 0) rotate(0deg); }
 }
 
 .icon {

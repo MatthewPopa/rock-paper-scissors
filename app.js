@@ -25,7 +25,11 @@ let player1Shape = document.querySelector('#player1Selection');
 let player2Shape = document.querySelector('#player2Selection');
 
 function updateShape(playerShape, choice) {
-    playerShape.src = "assets/" + choice + ".svg";
+    playerShape.classList.add('fade');
+    setTimeout(() => {
+        playerShape.src = "assets/" + choice + ".svg";
+        playerShape.classList.remove('fade');
+    }, 300);
 }
 
 function getComputerChoice() {

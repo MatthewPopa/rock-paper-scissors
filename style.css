@@ -128,6 +128,14 @@ body {
 
 .player-shape img {
     width: 100%;
+    opacity: 1;
+    transition: .25s;
+    transform: translateY(0rem);
+}
+
+.player-shape img.fade {
+    opacity: 0;
+    transform: translateY(1rem);
 }
 
 .icon {

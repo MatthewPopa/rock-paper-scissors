@@ -8,6 +8,34 @@ let roundSlider = document.querySelector('#roundSlider');
 let roundNumber = document.querySelector('#roundNumber');
 let roundDisplay = document.querySelector('#roundDisplay');
 
+let playAgainBtn = document.createElement('button');
+playAgainBtn.textContent = "Play again";
+playAgainBtn.classList.add('fade');
+playAgainBtn.addEventListener('click', () => {
+    playerScore = 0;
+    computerScore = 0;
+    currentRound = 0;
+    roundMessage.textContent = '';
+    roundDisplay.textContent = 'Rounds: ';
+    roundNumber.textContent = numberOfRounds;
+    roundMessage.append(roundSlider);
+    updateShape(player2Shape, "question");
+    updateShape(player1Shape, "question");
+    playerDisplay.removeChild(document.querySelector('#playerScore > .score-display'));
+    computerDisplay.removeChild(document.querySelector('#computerScore > .score-display'));
+    removeAllChildNodes(scoreDisplay);
+    playAgainBtn.classList.add('fade');
+    setTimeout(() => {
+        document.body.removeChild(playAgainBtn);
+    }, 500);
+});
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
 let numberOfRounds = 5;
 
 roundSlider.oninput = () => {
@@ -88,8 +116,18 @@ let startGame = () => {
 };
 
 let endGame = () => {
-    if(playerScore > computerScore) return roundMessage.textContent = "You won the game!";
-    return roundMessage.textContent = "You lost the game.";
+    if(playerScore > computerScore) {
+        roundMessage.textContent = "You won the game!";
+    } else {
+        roundMessage.textContent = "You lost the game.";
+    }
+    gamePlayed = true;
+    setTimeout(() => {
+        document.body.append(playAgainBtn);
+    }, 2000);
+    setTimeout(() => {
+        playAgainBtn.classList.remove('fade');
+    }, 2500);
 };
 
 let playerChoice = '';
@@ -108,13 +146,19 @@ selection.addEventListener('click', (e) => {
             playerChoice = 'scissors';
             break;
     }
-    if(currentRound == 0) startGame();
+    if(currentRound == 0 && !gamePlayed) startGame();
+    if(currentRound == 0 && gamePlayed) {
+        createScoreDisplay();
+        playerDisplay.append(scoreDisplay);
+        computerDisplay.append(scoreDisplay.cloneNode(true));
+    }
     if(playerScore < numberOfRounds && computerScore < numberOfRounds) playRound();
 });
 
 let playerScore = 0;
 let computerScore = 0;
 let currentRound = 0;
+let gamePlayed = false;
 
 function playRound(player, computer) {
     player = playerChoice;
@@ -165,7 +209,7 @@ function playRound(player, computer) {
     }
     let computerTicks = Array.from(document.querySelectorAll("#computerScore .score-display > .tick"));
     let playerTicks = Array.from(document.querySelectorAll("#playerScore .score-display > .tick"));
-    let addScore = () => {
+    function addScore() {
         computerTicks.forEach((tick) => {
             if(tick.classList.contains(`${computerScore}`)){
                 tick.classList.add('point');
@@ -177,6 +221,15 @@ function playRound(player, computer) {
             }
         });
     };
+    function clearScore() {
+        computerTicks.forEach((tick) => {
+            tick.classList.remove('point');
+        });
+        playerTicks.forEach((tick) => {
+            tick.classList.remove('point');
+        });
+    };
+    playRound.clearScore = clearScore;
     roundNumber.textContent = currentRound;
     addScore();
     updateShape(player2Shape, player);

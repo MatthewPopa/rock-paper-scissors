@@ -21,8 +21,12 @@ let scoreTick = document.createElement('div');
 scoreTick.classList.add('tick');
 
 
-let player1Shape = document.createElement('div');
-let player2Shape = document.createElement('div');
+let player1Shape = document.querySelector('#player1Selection');
+let player2Shape = document.querySelector('#player2Selection');
+
+function updateShape(playerShape, choice) {
+    playerShape.src = "assets/" + choice + ".svg";
+}
 
 function getComputerChoice() {
     let number = getRandomInt(3);
@@ -96,7 +100,7 @@ let currentRound = 0;
 
 function playRound(player, computer) {
     player = playerChoice;
-    computer = "paper";
+    computer = getComputerChoice();
     currentRound++;
     if(player == "rock"){
         if(computer == "rock"){
@@ -151,6 +155,10 @@ function playRound(player, computer) {
     };
     roundNumber.textContent = currentRound;
     addScore();
+    updateShape(player2Shape, player);
+    updateShape(player1Shape, computer);
+    setTimeout(() => {
+    }, 500);
     if(playerScore == numberOfRounds || computerScore == numberOfRounds) endGame();
     return;
 }

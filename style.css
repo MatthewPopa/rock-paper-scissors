@@ -88,7 +88,7 @@ body {
     font-size: 1.5rem;
     display: flex;
     width: 100%;
-    gap: var(--unit);
+    gap: calc(var(--unit) * .5);
 }
 
 .round-header > div {
@@ -148,7 +148,7 @@ hr {
     flex: 1 1 0px;
     height: auto;
     aspect-ratio: 1 / 1;
-    border: .25rem solid var(--white);
+    border: .125rem solid var(--white);
     border-radius: .5rem;
     display: flex;
     flex-direction: column;

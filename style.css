@@ -305,11 +305,21 @@ button:active {
 }
 
 @media (width < 600px)  {
+    :root {
+        --unit: .875rem;
+    }
     body {
         font-size: 12px;
     }
+    h1 {
+        font-size: 9vw;
+    }
     .round-header {
         order: 1;
+        gap: calc(var(--unit) * .8);
+    }
+    #round {
+        min-width: 9.25rem;
     }
     .opponent-selector {
         height: 4.5rem;
@@ -320,8 +330,21 @@ button:active {
     .score {
         height: 4rem;
     }
+    .score-display {
+        gap: 3px;
+    }
     .tick {
-        height: 80%;
-        width: .75rem
+        height: 70%;
+        width: .625rem;
+        border-radius: .2rem;
+    }
+    .opponent {
+        border: .125rem solid var(--white);
+    }
+    .opponent-selector div.active {
+        border: .125rem solid var(--blue);
+    }
+    .shape-selector div {
+        border: .125rem solid var(--white);
     }
 }

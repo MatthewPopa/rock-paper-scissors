@@ -23,6 +23,8 @@ playAgainBtn.addEventListener('click', () => {
     updateShape(player1Shape, "question");
     playerDisplay.removeChild(document.querySelector('#playerScore > .score-display'));
     computerDisplay.removeChild(document.querySelector('#computerScore > .score-display'));
+    playerDisplay.textContent = 'VS Player';
+    computerDisplay.textContent = 'VS Computer';
     removeAllChildNodes(scoreDisplay);
     playAgainBtn.classList.add('fade');
     setTimeout(() => {
@@ -60,12 +62,13 @@ function updateShape(playerShape, choice) {
     }, 300);
 }
 
-function winAnim(playerShape) {
+function winAnim(playerShape, choice) {
+    choice += "Win";
     setTimeout(() => {
-        playerShape.classList.add('win');
+        playerShape.classList.add(choice);
     }, 500);
     setTimeout(() => {
-        playerShape.classList.remove('win');
+        playerShape.classList.remove(choice);
     }, 2000);
 }
 
@@ -88,6 +91,8 @@ let createRoundArray = () => {
 }
 
 let createScoreDisplay = () => {
+    playerDisplay.textContent = '';
+    computerDisplay.textContent = '';
     createRoundArray().forEach((element) => {
         scoreTick.classList.add(element);
         scoreDisplay.append(scoreTick.cloneNode(true));
@@ -97,6 +102,12 @@ let createScoreDisplay = () => {
 
 let startGame = () => {
     createScoreDisplay();
+    if(document.querySelector('.opponent-selector #player').classList.contains("active")){
+        playTestRound("player");
+    };
+    if(document.querySelector('.opponent-selector #computer').classList.contains("active")){
+        playTestRound("computer");
+    };
     document.querySelector(".active").classList.remove("active");
     document.querySelector(".selectable").classList.remove("selectable");
     playerDisplay.textContent = '';
@@ -155,14 +166,43 @@ selection.addEventListener('click', (e) => {
     if(playerScore < numberOfRounds && computerScore < numberOfRounds) playRound();
 });
 
+let opponentSelection = document.querySelector('.opponent-selector');
+opponentSelection.addEventListener('click', (e) => {
+    let target = e.target
+    if(opponentSelection.classList.contains("selectable")) {
+        switch(target.id){
+            case 'computer':
+                if(!(target.classList.contains("active"))) {
+                    document.querySelector('.opponent-selector #player').classList.remove("active");
+                    target.classList.toggle("active");
+                }
+                break;
+            case 'player':
+                if(!(target.classList.contains("active"))) {
+                    document.querySelector('.opponent-selector #computer').classList.remove("active");
+                    target.classList.toggle("active");
+                }
+                break;
+        }
+    }
+});
+
 let playerScore = 0;
 let computerScore = 0;
 let currentRound = 0;
 let gamePlayed = false;
 
+function playTestRound(mode) {
+    if(mode == "player"){
+        console.log("player mode");
+    } else {
+        console.log("computer mode");
+    }
+}
+
 function playRound(player, computer) {
     player = playerChoice;
-    computer = getComputerChoice();
+    computer = "rock";
     currentRound++;
     if(player == "rock"){
         if(computer == "rock"){
@@ -171,18 +211,18 @@ function playRound(player, computer) {
         if(computer == "paper"){
             roundMessage.textContent = "You lose! Paper beats rock.";
             computerScore++;
-            winAnim(player1Shape);
+            winAnim(player1Shape, "paper");
         }
         if(computer == "scissors"){
             roundMessage.textContent = "You win! Rock beats scissors.";
             playerScore++;
-            winAnim(player2Shape);
+            winAnim(player2Shape, "rock");
         }
     } else if(player == "paper"){
         if(computer == "rock"){
             roundMessage.textContent = "You win! Paper beats rock.";
             playerScore++;
-            winAnim(player2Shape);
+            winAnim(player2Shape, "paper");
         }
         if(computer == "paper"){
             roundMessage.textContent = "You tie! You both picked paper.";
@@ -190,18 +230,18 @@ function playRound(player, computer) {
         if(computer == "scissors"){
             roundMessage.textContent = "You lose! Scissors beats paper.";
             computerScore++;
-            winAnim(player1Shape);
+            winAnim(player1Shape, "scissors");
         }
     } else if(player == "scissors"){
         if(computer == "rock"){
             roundMessage.textContent = "You lose! Rock beats scissors.";
             computerScore++;
-            winAnim(player1Shape);
+            winAnim(player1Shape, "rock");
         }
         if(computer == "paper"){
             roundMessage.textContent = "You win! Scissors beats paper.";
             playerScore++;
-            winAnim(player2Shape);
+            winAnim(player2Shape, "scissors");
         }
         if(computer == "scissors"){
             roundMessage.textContent = "You tie! You both picked scissors.";

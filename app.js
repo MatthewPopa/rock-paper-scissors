@@ -202,7 +202,7 @@ function playTestRound(mode) {
 
 function playRound(player, computer) {
     player = playerChoice;
-    computer = "rock";
+    computer = getComputerChoice();
     currentRound++;
     if(player == "rock"){
         if(computer == "rock"){

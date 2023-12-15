@@ -14,10 +14,10 @@
     </div>
     <div class="round-header">
         <div id="round"><span id="roundDisplay">Rounds: </span><span id="roundNumber">5</span></div>
-        <div id="roundMessage"><input type="range" min="1" max="9" value="5" class="slider" id="roundSlider"></div>
+        <div id="roundMessage"><input tabindex="0" type="range" min="1" max="9" value="5" class="slider" id="roundSlider"></div>
     </div>
     <div class="opponent-selector selectable">
-        <div class="active opponent" id="computer">
+        <div tabindex="0" class="opponent active" id="computer">
             <div class="scoreboard">
                 <img class="icon" src="assets/computer.svg">
                 <div class="score" id="computerScore">VS Computer</div>
@@ -27,7 +27,8 @@
                 <div><img id="player1Selection" src="assets/question.svg"></div>
             </div>
         </div>
-        <div class="opponent" id="player">
+        <div tabindex="0" class="opponent inactive tooltip" id="player">
+            <div class="tooltiptext">Online coming soon&trade;</div>
             <div class="scoreboard">
                 <img class="icon" src="assets/player.svg">
                 <div class="score" id="playerScore">VS Player</div>
@@ -39,9 +40,9 @@
         </div>
     </div>
     <div class="shape-selector">
-        <div id="rock"><img src="assets/rock.svg"></div>
-        <div id="paper"><img src="assets/paper.svg"></div>
-        <div id="scissors"><img src="assets/scissors.svg"></div>
+        <div tabindex="0" id="rock"><img src="assets/rock.svg"></div>
+        <div tabindex="0" id="paper"><img src="assets/paper.svg"></div>
+        <div tabindex="0" id="scissors"><img src="assets/scissors.svg"></div>
     </div>
 </div>
 </body>

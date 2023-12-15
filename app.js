@@ -109,6 +109,7 @@ let startGame = () => {
         playTestRound("computer");
     };
     document.querySelector(".active").classList.remove("active");
+    document.querySelector(".inactive").classList.remove("inactive");
     document.querySelector(".selectable").classList.remove("selectable");
     playerDisplay.textContent = '';
     computerDisplay.textContent = '';
@@ -143,7 +144,7 @@ let endGame = () => {
 
 let playerChoice = '';
 let selection = document.querySelector('.shape-selector');
-selection.addEventListener('click', (e) => {
+selection.addEventListener('mousedown', (e) => {
     let target = e.target;
 
     switch(target.id){
@@ -166,26 +167,26 @@ selection.addEventListener('click', (e) => {
     if(playerScore < numberOfRounds && computerScore < numberOfRounds) playRound();
 });
 
-let opponentSelection = document.querySelector('.opponent-selector');
-opponentSelection.addEventListener('click', (e) => {
-    let target = e.target
-    if(opponentSelection.classList.contains("selectable")) {
-        switch(target.id){
-            case 'computer':
-                if(!(target.classList.contains("active"))) {
-                    document.querySelector('.opponent-selector #player').classList.remove("active");
-                    target.classList.toggle("active");
-                }
-                break;
-            case 'player':
-                if(!(target.classList.contains("active"))) {
-                    document.querySelector('.opponent-selector #computer').classList.remove("active");
-                    target.classList.toggle("active");
-                }
-                break;
-        }
-    }
-});
+// let opponentSelection = document.querySelector('.opponent-selector');
+// opponentSelection.addEventListener('click', (e) => {
+//     let target = e.target
+//     if(opponentSelection.classList.contains("selectable")) {
+//         switch(target.id){
+//             case 'computer':
+//                 if(!(target.classList.contains("active"))) {
+//                     document.querySelector('.opponent-selector #player').classList.remove("active");
+//                     target.classList.toggle("active");
+//                 }
+//                 break;
+//             case 'player':
+//                 if(!(target.classList.contains("active"))) {
+//                     document.querySelector('.opponent-selector #computer').classList.remove("active");
+//                     target.classList.toggle("active");
+//                 }
+//                 break;
+//         }
+//     }
+// });
 
 let playerScore = 0;
 let computerScore = 0;
